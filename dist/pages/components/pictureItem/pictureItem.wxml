@@ -1,0 +1,21 @@
+<view class="pic-item">
+  <view class="user-info">
+    <view class="avata-wrapper">
+      <image mode="aspectFill" class="avatar" src="{{picItem.user.avatarUrl}}" />
+    </view>
+    <view class="nick-name">{{picItem.user.nickName}}</view>
+  </view>
+  <view class="pic-container" bindtap="jumpToDetail" data-pic-id="{{picItem._id}}">
+    <image class="pic-item" mode="aspectFit" src="{{picItem.fileId}}" />
+  </view>
+  <view class="likes">
+    <button data-pic-id="{{picItem._id}}" open-type="getUserInfo" bindgetuserinfo="onLike" class="icon-btn {{picItem.ifLiked || liked?'active':'inactive'}}">
+      <view class="fa fa-thumbs-up"></view>
+      <view>{{liked ? (picItem.ifLiked ? picItem.likesCount : (picItem.likesCount || 0) + 1) : picItem.likesCount}}</view>
+    </button>
+    <view class="likes-img-wrapper">
+      <image class="like-image" wx:for="{{picItem.likes}}" wx:key="{{index}}" mode="scaleToFill" src="{{item.user.avatarUrl}}" />
+      <image wx:if="{{liked && !picItem.ifLiked}}" class="like-image" mode="scaleToFill" src="{{selfLike.avatarUrl}}" />      
+    </view>
+  </view>
+</view>

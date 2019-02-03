@@ -1,0 +1,10 @@
+{
+  "window": {
+    "navigationBarTitleText": "受欢迎"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "component-pic-item": "../components/pictureItem/pictureItem"
+  }
+}

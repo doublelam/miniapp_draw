@@ -6,7 +6,9 @@
       "arrow-parens": [true, "ban-single-arg-parens"],
       "interface-name": [true, "never-prefix"],
       "no-require-imports": false,
-      "no-var-requires": false
+      "no-var-requires": false,
+      "no-debugger": false,
+      "no-console": false
     },
     "jsRules": {},
     "rulesDirectory": []

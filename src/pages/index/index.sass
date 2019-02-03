@@ -1,61 +1,108 @@
-@import @fortawesome/fontawesome-free/scss/fontawesome.scss
-@import @fortawesome/fontawesome-free/scss/fa-solid.scss
 @import ../../styles/common
 
-.items-wrapper
-  .canvas
-    background-color: $white
-    border: 1px solid $orange
-    flex: 1
-    width: 80vw
-    height: 80vw
-    border-radius: 50%
-    overflow: hidden
-    margin: auto
-    margin-top: 60rpx
+page
+  background-color: lighten($black, 95%)
+.index-wrapper
+  display: flex
+  flex-direction: column
+  height: 100vh
 
-  .bottom-tab
-    background-color: $orange
-    flex: none
-    height: 10vh
+  .canvas-container
+    display: flex
     width: 100%
-    position: fixed
+    flex: 1
+    flex-direction: column
+    box-shadow: shadow(4)
+
+    .canvas
+      background-color: $white
+      width: 100%
+      flex: 1
+
+  .btns-wrapper
+    position: relative
+    right: 0
     bottom: 0
+    display: flex
+    align-items: center
+    color: $white
+    justify-content: space-around
+    width: 100%
+    height: 140rpx
+    background-color: $orange
+    transition: .3s
+    // border-top-left-radius: 70rpx
+    // border-bottom-left-radius: 70rpx
+    box-shadow: shadow(2)
+
+    &.hidden
+      transform: translateX(80%)
+
+    &.show
+      transform: translateX(0)
+
+    .dir-btn
+      padding: 20rpx
+      font-size: 60rpx
+
+    .btn-view
+      padding: 20rpx
+      background-color: $orange
+      color: $white
+      border-radius: 10rpx
+      transition: .2s
+      margin: 0
+      text-shadow: 1px 1px 3px transparentize($black, .9)
+
+      .fa
+        font-size: 60rpx
+
+    .hover-btn
+      box-shadow: shadow(1)
+
+.selecter
+  position: fixed
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, .5)
+  left: 0
+  top: 0
+  transition: opacity .3s
+
+  .mask
+    position: absolute
     left: 0
+    top: 0
+    width: 100%
+    height: 100%
 
-    .swiper-for-menus
+  .selecter-color
+    position: absolute
+    border-radius: 20rpx
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    width: 80%
+    padding: 30rpx
+    background-color: $white
+    max-height: 60%
+    overflow: scroll
+
+    .selecter-item
+      padding: 40rpx
       display: flex
+      border-radius: 6rpx
+      align-items: center
+      justify-content: space-between
+      transition: .2s all
 
-      .icon-wrapper
-        align-items: center
-        display: flex
-        flex: 1
-        justify-content: center
+      &.selected
+        background-color: darken($white, 15%)
 
-        @for $var from 1 through 4
-          &:nth-child(#{$var})
-            .menu-item
-              animation-delay: #{($var - 1) * 0.1}s
+      .color-dot
+        width: 40rpx
+        height: 40rpx
+        border-radius: 20rpx
 
-      .menu-item
-        +animate((name: up-float))
-
-        align-items: center
-        background-color: transparent
-        border-radius: 50%
-        color: darken($text-light-primary, 5%)
-        display: flex
-        height: 12vw
-        justify-content: center
-        margin: 0
-        padding: 0
-        transition: all 0.2s
-        width: 12vw
-
-      .menu-item-hover
-        background-color: darken($orange, 5%)
-
-      .fas
-        display: block
-        font-size: 26px
-        text-shadow: 1px 1px 0 transparentize($black, 0.9)
+    .hover-item
+      background-color: darken($white, 10%)

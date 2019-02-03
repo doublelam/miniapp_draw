@@ -151,6 +151,7 @@ declare namespace wx {
          * 分享路径, 默认为当前页面path, 必须是以 / 开头的完整路径
          */
         path?: string;
+        imageUrl?: string;
     }
 
     export interface IData {
@@ -1988,6 +1989,16 @@ declare namespace wx {
          * 画布标识，传入 <canvas/> 的 cavas-id
          */
         canvasId: string;
+        x?: number;
+        y?: number;
+        width?: number;
+        height?: Number;
+        destWidth?: number;
+        destHeight?: number;
+        fileType?: string;
+        quality: number;
+        success?: (data: { tempFilePath: string }) => any;
+        fail?: (e: string) => any;
     }
 
     /**
@@ -2014,13 +2025,18 @@ declare namespace wx {
         complete?: () => void;
     }, page: IPage<any>);
 
-    
+
     export function arrayBufferToBase64(buffer: ArrayBuffer): string;
     export function base64ToArrayBuffer(str: string): ArrayBuffer;
     /**
      * 收起键盘。
      */
     export function hideKeyboard(): void;
+
+    /*
+     * 开始下拉刷新
+     */
+    export function startPullDownRefresh(): void;
 
     /**
      * 停止当前页面下拉刷新。
@@ -2130,6 +2146,8 @@ declare namespace wx {
          * 接口调用成功的回调函数
          */
         success?: (res?: GetUserInfoResult) => void;
+        withCredentials?: boolean
+        fail?: () => void
     }
 
     /**
@@ -2185,6 +2203,34 @@ declare namespace wx {
      */
     export function createSelectorQuery(): SelectorQuery;
 
+    /* 
+     * 云函数 
+     */
+    export interface InitOpt {
+        env?: string | {
+            database?: string;
+            storage?: string;
+            functions?: string;
+        }, traceUser?: boolean;
+    }
+    export interface CallFuncOpt {
+        name: string;
+        data?: { [x: string]: any };
+        success?: (res: { result: any }) => any;
+        fail?: (res: { error: string }) => any;
+        [x: string]: any;
+    }
+    export interface UploadFileOpt {
+        cloudPath: string;
+        filePath: string;
+        success?: (res: { fileID: string }) => any;
+        fail?: (e: string) => any;
+    }
+    export const cloud: {
+        init: (opt: InitOpt) => any;
+        callFunction: (opt: CallFuncOpt) => any;
+        uploadFile: (opt: UploadFileOpt) => any;
+    }
 }
 interface Rect {
     id: string;
@@ -2223,3 +2269,25 @@ interface NodesRef {
     scrollOffset: (callback: (res: ScrollOffsetRes) => void) => CommonExec;
     fields: (fields: Fields, callback: () => void) => void;
 }
+
+declare interface IComponent<T> {
+    data?: T;
+    properties?: { [x: string]: any };
+    methods?: { [x: string]: any };
+    behaviors?: string[];
+    created?: () => any;
+    attached?: () => any;
+    ready?: () => void;
+    moved?: () => any;
+    detached?: () => any;
+    relations?: { [x: string]: any };
+    externalClasses?: string[];
+    options?: { [x: string]: any };
+    lifetimes?: { [x: string]: any };
+    pageLifetimes?: { [x: string]: any };
+    definitionFilter?: (f: any) => any;
+    setData?: (data: T, callback?: () => void) => void;
+    [x: string]: any;
+}
+
+declare function Component(component: IComponent<any>): void

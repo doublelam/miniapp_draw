@@ -42,7 +42,8 @@ export class CanvasDrawable {
   }
 
   public cleanAll() {
-    this.canvasContext.clearRect(0, 0, this.innerWidthAndHeight[0], this.innerWidthAndHeight[1]);
+    this.canvasContext.clearRect(0, 0, 1000, 1000);
+    this.canvasContext.draw(true);
   }
 
   // public getCanvasBase64(...args): string {
@@ -70,12 +71,12 @@ export class CanvasDrawable {
     return this;
   }
 
-  public touchStart(e) {
+  public touchStart(e): void {
     const reCoordinate = this.recalculateCoordination([e.touches[0].x, e.touches[0].y]);
     this.touched(reCoordinate[0], reCoordinate[1]);
   }
 
-  public touchMove(e) {
+  public touchMove(e): void {
     const reCoordinate = this.recalculateCoordination([e.touches[0].x, e.touches[0].y]);
     this.moveWhenErase(reCoordinate[0], reCoordinate[1], this.eraseThickness);
     this.moveWhenDraw(reCoordinate[0], reCoordinate[1]);
@@ -119,6 +120,7 @@ export class CanvasDrawable {
     const halfSide: number = width / 2;
     const startPoint: Coordination = [x - halfSide, y - halfSide];
     this.canvasContext.clearRect(startPoint[0], startPoint[1], width, width);
+    this.canvasContext.draw(true);
   }
 
   private moveWhenDraw(x: number, y: number, scale = this.drawScale): void {

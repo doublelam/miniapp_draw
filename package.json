@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:build-w": "webpack -w --mode development",
-    "dev:build-p": "webpack -w --mode production",
+    "dev:build-w": "webpack -w --mode production --env.MODE='develop'",
+    "dev:build-p": "webpack -w --mode production --env.MODE='product'",
     "clean-dist": "cd dist && rm -r ./**"
   },
   "author": "",
@@ -33,6 +33,7 @@
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "stylelint-config-standard": "^18.2.0",
     "ts-loader": "^4.4.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.1",
