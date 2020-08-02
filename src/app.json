@@ -1,41 +1,12 @@
 {
   "cloud": true,
   "pages": [
-    "pages/home/home",
-    "pages/index/index",
-    "pages/pictureDetail/pictureDetail",
-    "pages/favourites/favourites"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ff9800",
-    "navigationBarTitleText": "莫得感情的画布",
-    "navigationBarTextStyle": "#fff"
-  },
-  "tabBar": {
-    "backgroundColor": "#ff9800",
-    "color": "#eeeeee",
-    "selectedColor": "#ffffff",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "./sources/images/icons8-home-o-81.png",
-        "selectedIconPath": "./sources/images/icons8-home-81.png"
-      },
-      {
-        "pagePath": "pages/favourites/favourites",
-        "text": "受欢迎",
-        "iconPath": "./sources/images/icons8-fire-o-81.png",
-        "selectedIconPath": "./sources/images/icons8-fire-81.png"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "绘图",
-        "iconPath": "./sources/images/icons8-create-o-81.png",
-        "selectedIconPath": "./sources/images/icons8-create-81.png"
-      }
-    ]
+    "navigationBarTitleText": "随便画点什么吧。。。",
+    "navigationBarTextStyle": "white"
   }
 }

@@ -1,5 +1,4 @@
 {
-  "window": {
-    "navigationBarTitleText": "有感情的画布"
-  }
+    "navigationBarTitleText": "易手涂鸦",
+    "disableScroll": true
 }

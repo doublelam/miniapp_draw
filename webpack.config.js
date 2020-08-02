@@ -6,12 +6,7 @@ module.exports = env => {
   return {
     entry: {
       'app': './app.ts',
-      'pages/index/index': './pages/index/index.ts',
-      'pages/home/home': './pages/home/home',
-      'pages/favourites/favourites': './pages/favourites/favourites',
-      'cloud_functions/cloud_funcs': './cloud_functions/cloud_funcs.ts',
-      'pages/components/pictureItem/pictureItem': './pages/components/pictureItem/pictureItem',
-      'pages/pictureDetail/pictureDetail': './pages/pictureDetail/pictureDetail'
+      'pages/index/index': './pages/index/index.ts'
     },
     context: path.resolve(__dirname, 'src'),
     output: {

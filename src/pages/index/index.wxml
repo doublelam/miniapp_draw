@@ -1,6 +1,13 @@
 <view class="index-wrapper">
+  <view style="height: {{imgHeight}}px" class="preview-wrapper">
+    <image style="background-color: white" src="{{imgSrc}}" />
+  </view>
   <view class="canvas-container">
-    <canvas bindtouchstart="touchStart" bindtouchmove="touchMove" class="canvas" canvas-id="draw-canvas" />
+    <canvas bindtouchend="touchEnd" bindtouchstart="touchStart" bindtouchmove="touchMove" class="canvas" canvas-id="draw-canvas" />
+  </view>
+  <view class="actions-wrapper" bindtap="generateIMG">
+    <button loading="{{loading}}">生成图片</button>
+    <button open-type="share">分享</button>
   </view>
   <view class="btns-wrapper {{menuShow ? 'show' : 'hidden'}}">
     <!-- <view bindtap="showOrHiddenMenu" class="dir-btn fa fa-angle-{{menuShow ? 'right' : 'left'}}"></view> -->
@@ -13,25 +20,32 @@
     <view bindtap="changeType" hover-class="hover-btn" class="btn-view">
       <view class="fa fa-{{drawType==='draw'?'pen':'eraser'}}"></view>
     </view>
-    <button hover-class="hover-btn" class="btn-for-auth btn-view" open-type="getUserInfo" bindgetuserinfo="onUploadPic"><view class="fa fa-upload"></view></button>
+    <view bindtap="clearAll" hover-class="hover-btn" class="btn-view">
+      <view class="fa fa-window-close"></view>
+    </view>
   </view>
 </view>
 <cover-view wx:if="{{selectModal}}" style="visibility: {{selectModal?'visible':'hidden'}};opacity: {{selectModal?1:0}}" class="selecter">
   <cover-view bindtap="hideSelectModal" class="mask"/>
-  <cover-view class="selecter-color">
-    <cover-view bindtap="onChangeColor" data-color="{{item}}" class="selecter-item {{item.name === color.name?'selected':''}}" wx:for="{{colors}}" wx:key="{{item.name}}">
-      <cover-view>{{item.name}}</cover-view>
-      <cover-view class="color-dot" style="background: {{item.value}}"></cover-view>
+  <cover-view class="selector-wrapper">
+    <cover-view class="selecter-color">
+      <cover-view bindtap="onChangeColor" data-color="{{item}}" class="selecter-item {{item.name === color.name?'selected':''}}" wx:for="{{colors}}" wx:key="name">
+        <cover-view>{{item.name}}</cover-view>
+        <cover-view class="color-dot" style="background: {{item.value}}"></cover-view>
+      </cover-view>
     </cover-view>
   </cover-view>
 </cover-view>
 
 <cover-view wx:if="{{strokeModal}}" style="visibility: {{strokeModal?'visible':'hidden'}};opacity: {{strokeModal?1:0}}" class="selecter">
   <cover-view bindtap="hideStrokeModal" class="mask"/>
-  <cover-view class="selecter-color">
-    <cover-view bindtap="onChangeStroke" data-stroke="{{item}}" class="selecter-item {{item === stroke?'selected':''}}" wx:for="{{strokes}}" wx:key="{{item}}">
-      <cover-view>{{item}}px</cover-view>
-      <cover-view class="color-dot" style="background:#666;width:50px;height:{{item}}px"></cover-view>
+  <cover-view class="selector-wrapper">
+    <cover-view class="selecter-color">
+      <cover-view bindtap="onChangeStroke" data-stroke="{{item}}" class="selecter-item {{item === stroke?'selected':''}}" wx:for="{{strokes}}" wx:key="item">
+        <cover-view>{{item}}px</cover-view>
+        <cover-view class="color-dot" style="background:#666;width:50px;height:{{item}}px"></cover-view>
+      </cover-view>
     </cover-view>
   </cover-view>
 </cover-view>
+

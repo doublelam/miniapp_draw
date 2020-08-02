@@ -35,6 +35,5 @@
 			"current": -1,
 			"list": []
 		}
-	},
-	"cloudfunctionRoot": "./cloud_functions/"
+	}
 }

@@ -17,8 +17,8 @@ App({
   },
 
   onLaunch: () => {
-    const cloudEnv = getConfig.cloundFuncEnv;
-    console.log(cloudEnv);
-    wx.cloud.init({env: cloudEnv});
+    // const cloudEnv = getConfig.cloundFuncEnv;
+    // console.log(cloudEnv);
+    // wx.cloud.init({env: cloudEnv});
   },
 });
