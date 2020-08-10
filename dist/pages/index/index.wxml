@@ -1,6 +1,6 @@
 <view class="index-wrapper">
   <view class="preview-wrapper">
-    <image class="preview-img" mode="aspectFit" style="background-color: white" src="{{imgSrc}}" />
+    <image bindtap="previewIMG" class="preview-img" mode="aspectFit" style="background-color: white" src="{{imgSrc}}" />
   </view>
   <view style="height: {{imgHeight}}px" class="canvas-container">
     <canvas bindtouchend="touchEnd" bindtouchstart="touchStart" bindtouchmove="touchMove" class="canvas" canvas-id="draw-canvas" />

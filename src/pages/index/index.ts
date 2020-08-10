@@ -153,6 +153,15 @@ class Index implements IPage<IndexData> {
     });
   }
 
+  public previewIMG(): void {
+    if (!this.data.imgSrc) {
+      return;
+    }
+    wx.previewImage({
+      urls: [this.data.imgSrc],
+    });
+  }
+
   public onShareAppMessage(): wx.ShareOptions {
     return {
       imageUrl: this.data.imgSrc,
