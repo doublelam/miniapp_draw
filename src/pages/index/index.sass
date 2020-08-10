@@ -8,19 +8,31 @@ page
   height: 100vh
 
   .preview-wrapper
+    position: relative
     display: flex
+    flex: 1
     justify-content: center
     align-items: center
+    box-shadow: shadow(2)
+
+    .preview-img
+      position: absolute
+      border-radius: 6px
+      width: 50%
+      height: 80%
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
 
   .actions-wrapper
     display: flex
+    flex: none
     padding: 5rpx
     background-color: $white
 
   .canvas-container
     display: flex
     width: 100%
-    flex: 1
     flex-direction: column
 
     .canvas

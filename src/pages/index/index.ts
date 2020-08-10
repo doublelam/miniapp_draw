@@ -155,13 +155,13 @@ class Index implements IPage<IndexData> {
 
   public onShareAppMessage(): wx.ShareOptions {
     return {
-      title: "我的涂鸦",
+      imageUrl: this.data.imgSrc,
     };
   }
 
   public onShareTimeline() {
     return {
-      title: "我的涂鸦",
+      imageUrl: this.data.imgSrc,
     }
   }
 

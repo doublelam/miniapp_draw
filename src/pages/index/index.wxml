@@ -1,12 +1,12 @@
 <view class="index-wrapper">
-  <view style="height: {{imgHeight}}px" class="preview-wrapper">
-    <image style="background-color: white" src="{{imgSrc}}" />
+  <view class="preview-wrapper">
+    <image class="preview-img" mode="aspectFit" style="background-color: white" src="{{imgSrc}}" />
   </view>
-  <view class="canvas-container">
+  <view style="height: {{imgHeight}}px" class="canvas-container">
     <canvas bindtouchend="touchEnd" bindtouchstart="touchStart" bindtouchmove="touchMove" class="canvas" canvas-id="draw-canvas" />
   </view>
-  <view class="actions-wrapper" bindtap="generateIMG">
-    <button loading="{{loading}}">生成图片</button>
+  <view class="actions-wrapper">
+    <button bindtap="generateIMG" loading="{{loading}}">预览</button>
     <button open-type="share">分享</button>
   </view>
   <view class="btns-wrapper {{menuShow ? 'show' : 'hidden'}}">

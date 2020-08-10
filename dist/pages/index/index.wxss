@@ -19,13 +19,27 @@ page {
 }
 
 .index-wrapper .preview-wrapper {
+  position: relative;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
+}
+
+.index-wrapper .preview-wrapper .preview-img {
+  position: absolute;
+  border-radius: 6px;
+  width: 50%;
+  height: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .index-wrapper .actions-wrapper {
   display: flex;
+  flex: none;
   padding: 5rpx;
   background-color: #fff;
 }
@@ -33,7 +47,6 @@ page {
 .index-wrapper .canvas-container {
   display: flex;
   width: 100%;
-  flex: 1;
   flex-direction: column;
 }
 
