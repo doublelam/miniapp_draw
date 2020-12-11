@@ -8,6 +8,12 @@
   }
 }
 
+view,
+cover-view,
+button {
+  box-sizing: border-box;
+}
+
 page {
   background-color: #f2f2f2;
 }
@@ -40,7 +46,8 @@ page {
 .index-wrapper .actions-wrapper {
   display: flex;
   flex: none;
-  padding: 5rpx;
+  padding-top: 10px;
+  padding-bottom: 30px;
   background-color: #fff;
 }
 
@@ -48,6 +55,7 @@ page {
   display: flex;
   width: 100%;
   flex-direction: column;
+  border: 5px solid #aaa;
 }
 
 .index-wrapper .canvas-container .canvas {
@@ -162,4 +170,90 @@ page {
 
 .selecter .selecter-color .hover-item {
   background-color: #e6e6e6;
+}
+
+.button {
+  background-color: slateblue;
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 0 #452ed8, 5px 12px 3px rgba(0, 0, 0, 0.4);
+  transition: all .2s;
+  font-size: 14px;
+}
+
+.button:active {
+  box-shadow: 0 0 0 #452ed8;
+  transform: translateY(5px);
+}
+
+.button[disabled] {
+  box-shadow: 0 0 0 #452ed8;
+  transform: translateY(5px);
+}
+
+.model-select {
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  left: 0;
+  bottom: -500px;
+  height: 500px;
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: all .3s;
+  border: none;
+  border-top: 5px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.model-select .close-item {
+  align-self: flex-end;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  padding-right: 30px;
+}
+
+.model-item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+.model-item {
+  width: 33.333%;
+  height: 38vw;
+  padding: 10rpx;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.selected {
+  background-color: #ff9800;
+}
+
+.img-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: .3;
+  border-radius: 6px;
+}
+
+.blank-item {
+  border: 3px solid #aaa;
+  width: 100%;
+  height: 100%;
+  padding-top: 15vw;
+  text-align: center;
+  border-radius: 6px;
 }

@@ -4700,3 +4700,9 @@ readers do not read off random characters that represent icons */
     transform: translateY(0);
   }
 }
+
+view,
+cover-view,
+button {
+  box-sizing: border-box;
+}

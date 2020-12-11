@@ -20,6 +20,9 @@ interface IndexData {
   imgSrc?: string | null;
   loading?: boolean;
   imgHeight?: number;
+  imgModel?: string[];
+  imgSelected?: string;
+  modalAnimation?: boolean;
 }
 
 class Index implements IPage<IndexData> {
@@ -27,7 +30,10 @@ class Index implements IPage<IndexData> {
   private canvasDraw: CanvasDrawable;
   private getIMGTimeOut: any;
   private imgSrc: string;
-
+  private modalAni = wx.createAnimation({
+    duration: 1000,
+    timingFunction: 'ease-in-out',
+  });
   constructor() {
     this.data = {
       color: DEFAULTVALUE.color,
@@ -41,14 +47,35 @@ class Index implements IPage<IndexData> {
       imgSrc: null,
       loading: false,
       imgHeight: 0,
+      imgModel: [
+        'blank',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/Tweety.svg.png',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/Kogu_Art.png',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/images.png',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/gokussj3posing5.jpg',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/Droopy_dog.png',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/Bart_Simpson_200px.png',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/71hMEM1a9EL._SL1500_.jpg',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/61OXKrkiy-L._SL1399_.jpg',
+        'cloud://drawcanvas-9gqn1go612a53238.6472-drawcanvas-9gqn1go612a53238-1304484975/static/37-370657_p-m-kitty-03-very-easy-cartoon-drawing.png',
+      ],
+      imgSelected: null,
+      modalAnimation: false,
     };
+  }
+
+  public showModal() {
+    this.setData({modalAnimation: true})
+  }
+
+  public dismissModal() {
+    this.setData({modalAnimation: false})
   }
 
   public onReady(): void {
     const canvasContext = wx.createCanvasContext("draw-canvas");
     wx.getSystemInfo({
       success: (info) => {
-        console.log('___info',info )
         this.setData({
           imgHeight: info.windowWidth * .8
         });
@@ -69,6 +96,34 @@ class Index implements IPage<IndexData> {
 
   public touchEnd(e): void {
     // 
+  }
+
+  public selectImg(e): void {
+    const { url } = e.currentTarget.dataset;
+    this.setData({
+      imgSelected: url,
+    }, () => {
+      this.dismissModal();
+    });
+  }
+
+  public chooseImg(e): void {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      success: (res) => {
+        this.setData({
+          imgSelected: res.tempFilePaths[0]
+        }, () => {
+          this.dismissModal();
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '选择图片出错！重新试试吧'
+        });
+      }
+    });
   }
 
   public showOrHiddenMenu(e): void {
@@ -163,15 +218,21 @@ class Index implements IPage<IndexData> {
   }
 
   public onShareAppMessage(): wx.ShareOptions {
-    return {
-      imageUrl: this.data.imgSrc,
-    };
+    if (this.data.imgSrc) {
+      return {
+        imageUrl: this.data.imgSrc,
+      };
+    }
+    return null;
   }
 
   public onShareTimeline() {
-    return {
-      imageUrl: this.data.imgSrc,
+    if (this.data.imgSrc) {
+      return {
+        imageUrl: this.data.imgSrc,
+      };
     }
+    return null;
   }
 
   public generateIMG() {
@@ -180,6 +241,7 @@ class Index implements IPage<IndexData> {
     });
     wx.canvasToTempFilePath({
       canvasId: "draw-canvas",
+      fileType: 'jpg',
       quality: 1,
       fail: () => {
         this.setData({
@@ -192,6 +254,10 @@ class Index implements IPage<IndexData> {
         this.setData({
           imgSrc: this.imgSrc,
           loading: false,
+        }, () => {
+          wx.previewImage({
+            urls: [this.imgSrc],
+          });
         });
       }
     });

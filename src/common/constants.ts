@@ -1,6 +1,6 @@
 export const COLORS = [
   { name: "amber", value: "#ffc107" },
-  { name: "black", value: "#000" },
+  { name: "black", value: "#555" },
   { name: "blue", value: "#2196f3" },
   { name: "blueGrey", value: "#607d8b" },
   { name: "brown", value: "#795548" },
