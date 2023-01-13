@@ -37,6 +37,6 @@
     "ts-loader": "^4.4.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.3.12"
   }
 }
